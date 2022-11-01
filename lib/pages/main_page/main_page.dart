@@ -37,8 +37,8 @@ class MainPage extends StatelessWidget {
                     30.verticalSpace,
 
                     _button(
-                        title: 'Scroll tap bar',
-                        onTap: ctrl.onTapScrollTabBar
+                        title: 'Rotated list view',
+                        onTap: ctrl.onTapRatateButton
                     ),
                   ],
                 ),

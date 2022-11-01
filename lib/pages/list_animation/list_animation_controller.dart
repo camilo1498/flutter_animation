@@ -2,15 +2,16 @@ import 'package:animations/data/http/get_service.dart';
 import 'package:animations/data/models/search_image_res.dart';
 import 'package:animations/routes/app_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
+enum ListAnimType {rotation, scale, translate}
 
 class ListAnimationController extends GetxController {
 
   /// variables
   List<Photo> photoList = [];
-  bool scaleAnim = false;
+  ListAnimType scaleAnim = ListAnimType.scale;
 
   /// controllers
   ScrollController scrollController = ScrollController();
