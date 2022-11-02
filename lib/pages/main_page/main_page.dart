@@ -40,6 +40,12 @@ class MainPage extends StatelessWidget {
                         title: 'Rotated list view',
                         onTap: ctrl.onTapRatateButton
                     ),
+                    30.verticalSpace,
+
+                    _button(
+                        title: 'Rotated pageview',
+                        onTap: ctrl.onTapScrollTabBar
+                    ),
                   ],
                 ),
               ),

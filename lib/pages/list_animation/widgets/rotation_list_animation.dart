@@ -23,9 +23,11 @@ class RotatedListAnimation extends StatelessWidget {
                 child: AnimatedOpacity(
                   duration: 300.milliseconds,
                   opacity: photo.getOpacityByElement(index, false),
-                  child: Transform.rotate(
+                  child: Transform(
                     /// Transform.rotate config
-                    angle: 1 - photo.getOpacityByElement(index, true),
+                    transform: Matrix4.identity()
+                      ..scale(photo.getOpacityByElement(index, true))
+                      ..rotateZ(index % 2 == 0 ? 1 - photo.getOpacityByElement(index, true) : photo.getOpacityByElement(index, true)  - 1),
                     alignment: Alignment.bottomCenter,
 
                     child: Container(
