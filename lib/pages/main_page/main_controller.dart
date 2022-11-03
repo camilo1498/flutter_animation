@@ -23,7 +23,7 @@ class MainController extends GetxController {
   }
 
   onTapScrollTabBar() {
-    Get.toNamed(AppRoutes.scrollTabBarPage);
+    Get.toNamed(AppRoutes.perspectivePage);
   }
 
 }

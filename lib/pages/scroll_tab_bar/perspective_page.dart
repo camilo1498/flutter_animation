@@ -1,60 +1,51 @@
-import 'package:animations/pages/scroll_tab_bar/scroll_tab_bar_controller.dart';
+import 'package:animations/pages/scroll_tab_bar/perspective_page_widget.dart';
+import 'package:animations/pages/scroll_tab_bar/perpective_page_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class ScrollTabBarPage extends StatelessWidget {
-  const ScrollTabBarPage({Key? key}) : super(key: key);
+class PerspectivePage extends StatelessWidget {
+  const PerspectivePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ScrollTabBarController>(
+    return GetBuilder<PerspectiveController>(
       id: 'photo_list',
-        builder: (ctrl) => Scaffold(
+      builder: (ctrl) => Scaffold(
           body: ctrl.photoList.isNotEmpty ? Center(
-            child: AspectRatio(
-              aspectRatio: 1.0,
-              child: PageView(
-                controller: ctrl.pageController,
-                physics: const BouncingScrollPhysics(),
-                children: [
-                  ...ctrl.photoList.map((photo) {
-                    final int index = ctrl.photoList.indexOf(photo);
-                    return Card(
-                      value: ctrl.holder,
-                      aspectRatio: 0.7,
-                      number: index,
-                      shadowColor: Colors.black.withOpacity(0.3),
-                      shadowScale: 1,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.4),
-                                  offset: const Offset(0, 1),
-                                  blurRadius: 0.1,
-                                  spreadRadius: 1
-                              )
-                            ]
-                        ),
-                        child: ClipRRect(
+            child: AnimatedPerspectivePage(
+              child: [
+                ...ctrl.photoList.map((item) => Hero(
+                  tag: ctrl.photoList.indexOf(item).toString(),
+                  child: GestureDetector(
+                    onTap: () => ctrl.onTapItem(ctrl.photoList.indexOf(item)),
+                    child: Container(
+                      decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          child: Image(
-                            image: NetworkImage(photo.src!.medium!),
-                            fit: BoxFit.cover,
-                          ),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(0.4),
+                                offset: const Offset(0, 1),
+                                blurRadius: 0.1,
+                                spreadRadius: 1
+                            )
+                          ]
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(30),
+                        child: Image(
+                          image: NetworkImage(item.src!.medium!),
+                          fit: BoxFit.cover,
                         ),
                       ),
-                    );
-                  })
-                ],
-              ),
+                    ),
+                  ),
+                ))
+              ],
             ),
           ) : const Center(
-            child: CircularProgressIndicator(),
-          ),
-        )
+          child: CircularProgressIndicator(),
+    ),
+    )
     );
   }
 }
@@ -123,5 +114,16 @@ class Card extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+class Controller extends ChangeNotifier {
+  double _holder = 2.0;
+
+  double get holder => _holder;
+
+  set holder(double value) {
+    _holder = value;
+    notifyListeners();
   }
 }
