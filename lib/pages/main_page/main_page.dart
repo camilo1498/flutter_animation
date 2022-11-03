@@ -53,6 +53,12 @@ class MainPage extends StatelessWidget {
                         title: '3D Card',
                         onTap: ctrl.onTap3DCard
                     ),
+                    30.verticalSpace,
+
+                    _button(
+                        title: 'Cubic Page View',
+                        onTap: ctrl.onTapCubicPageView
+                    ),
                   ],
                 ),
               ),

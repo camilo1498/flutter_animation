@@ -37,8 +37,7 @@ class Card3DPage extends StatelessWidget {
                                 ..setEntry(3, 2, 0.001)
                                 ..rotateX(selectionValue),
                               child: AbsorbPointer(
-                                absorbing: !ctrl.isOpen
-                                ,
+                                absorbing: !ctrl.isOpen,
                                 child: Container(
                                   height: constraints.maxHeight,
                                   width: constraints.maxWidth * 0.9,

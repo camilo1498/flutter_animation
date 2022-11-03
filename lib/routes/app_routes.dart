@@ -5,4 +5,5 @@ class AppRoutes {
   static const perspectivePage = '/perspectivePage';
   static const card3DPage = '/card3DPage';
   static const detailCardPage = '/detailCardPage';
+  static const cubicPage = '/cubicPage';
 }

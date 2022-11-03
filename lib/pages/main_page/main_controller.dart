@@ -30,4 +30,7 @@ class MainController extends GetxController {
     Get.toNamed(AppRoutes.card3DPage);
   }
 
+  onTapCubicPageView() {
+    Get.toNamed(AppRoutes.cubicPage);
+  }
 }
