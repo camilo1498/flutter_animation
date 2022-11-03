@@ -26,4 +26,8 @@ class MainController extends GetxController {
     Get.toNamed(AppRoutes.perspectivePage);
   }
 
+  onTap3DCard() {
+    Get.toNamed(AppRoutes.card3DPage);
+  }
+
 }

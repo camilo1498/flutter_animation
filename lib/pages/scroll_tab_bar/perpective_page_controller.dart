@@ -23,7 +23,7 @@ class PerspectiveController extends GetxController with GetSingleTickerProviderS
   }
 
   getPhoto() async {
-    await GetService.getNatureImageList(maxImages: '30').then((list) {
+    await GetService.getNatureImageList(maxImages: '10').then((list) {
       photoList = list;
       update(['photo_list', 'main_page']);
     });

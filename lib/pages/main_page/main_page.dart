@@ -43,8 +43,15 @@ class MainPage extends StatelessWidget {
                     30.verticalSpace,
 
                     _button(
-                        title: 'Rotated pageview',
+                        title: 'Perspective PageView',
                         onTap: ctrl.onTapScrollTabBar
+                    ),
+
+                    30.verticalSpace,
+
+                    _button(
+                        title: '3D Card',
+                        onTap: ctrl.onTap3DCard
                     ),
                   ],
                 ),
