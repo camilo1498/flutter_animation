@@ -46,10 +46,8 @@ class ExpandableNavBarController extends GetxController with GetSingleTickerProv
 
   onTaoNavBar() {
     currentHeight = maxHeight;
-    animController.forward(from: 0).then((value) {
-      expanded = true;
-      update();
-    });
+    animController.forward(from: 0);
+    expanded = true;
     update();
   }
 
