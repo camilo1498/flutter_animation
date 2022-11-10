@@ -18,18 +18,32 @@ class ExpandableNavBarPage extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 80.w),
-              child: ListView.builder(
-                itemCount: 15,
-                padding: EdgeInsets.only(bottom: ctrl.minHeight + 100.h),
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (_, index) => Padding(
-                  padding: EdgeInsets.symmetric(vertical: 15.h),
-                  child: Container(
-                    height: 600.h,
-                    width: screenUtil.screenWidth,
-                    color: Colors.blue,
+            SafeArea(
+              bottom: false,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 60.w),
+                child: ListView.builder(
+                  itemCount: 15,
+                  padding: EdgeInsets.only(bottom: ctrl.minHeight + 100.h),
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (_, index) => Padding(
+                    padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 20.w),
+                    child: Container(
+                      height: 600.h,
+                      width: screenUtil.screenWidth,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.4),
+                            blurRadius: 3,
+                            spreadRadius: 1,
+                            offset: const Offset(0, 1)
+                          )
+                        ]
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -55,7 +69,15 @@ class ExpandableNavBarPage extends StatelessWidget {
                               borderRadius: BorderRadius.vertical(
                                   top: const Radius.circular(20),
                                   bottom: Radius.circular(ctrl.borderRadius(value))
-                              )
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.4),
+                                    blurRadius: 2,
+                                    spreadRadius: 1,
+                                    offset: const Offset(0, 1)
+                                )
+                              ]
                           ),
                           child: ctrl.expanded ? Opacity(
                             opacity: ctrl.animController.value,
