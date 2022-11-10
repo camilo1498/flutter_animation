@@ -55,7 +55,7 @@ class ExpandableNavBarPage extends StatelessWidget {
               child: AnimatedBuilder(
                 animation: ctrl.animController,
                 builder: (context, child) {
-                  final value = const ElasticInOutCurve(0.7).transform(ctrl.animController.value);
+                  final value = const ElasticInOutCurve(0.35).transform(ctrl.animController.value);
                   return Stack(
                     children: [
                       Positioned(
@@ -71,12 +71,20 @@ class ExpandableNavBarPage extends StatelessWidget {
                                   bottom: Radius.circular(ctrl.borderRadius(value))
                               ),
                               boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.4),
-                                    blurRadius: 2,
-                                    spreadRadius: 1,
-                                    offset: const Offset(0, 1)
-                                )
+                                if(ctrl.expanded)
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.4),
+                                      blurRadius: 2,
+                                      spreadRadius: 1,
+                                      offset: const Offset(0, -0.6)
+                                  )
+                                else
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.4),
+                                      blurRadius: 2,
+                                      spreadRadius: 1,
+                                      offset: const Offset(0, 1)
+                                  )
                               ]
                           ),
                           child: ctrl.expanded ? Opacity(

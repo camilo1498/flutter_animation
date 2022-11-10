@@ -5,18 +5,18 @@ import 'package:get/get.dart';
 
 class ExpandableNavBarController extends GetxController with GetSingleTickerProviderStateMixin{
 
+  /// variables
   final double maxHeight = 350.0;
   final double minHeight = 70.0;
   double currentHeight = 0.0;
-
-
   bool expanded = false;
 
+  /// controllers
   late AnimationController animController;
 
   @override
   void onInit() {
-    animController = AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
+    animController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1200));
     super.onInit();
   }
 
