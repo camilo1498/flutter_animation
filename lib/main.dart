@@ -1,5 +1,3 @@
-import 'package:animations/pages/color_animation.dart';
-import 'package:animations/pages/place_anim.dart';
 import 'package:animations/routes/app_pages.dart';
 import 'package:animations/routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -49,9 +47,8 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.red,
           ),
-          //getPages: AppPages.appPages,
-          //initialRoute: AppRoutes.mainPage,
-          home: ExpandableNavBar(),
+          getPages: AppPages.appPages,
+          initialRoute: AppRoutes.mainPage,
           supportedLocales: const [Locale('en', 'US')],
           defaultTransition: Transition.fade,
           transitionDuration: 300.milliseconds,

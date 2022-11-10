@@ -59,6 +59,12 @@ class MainPage extends StatelessWidget {
                         title: 'Cubic Page View',
                         onTap: ctrl.onTapCubicPageView
                     ),
+                    30.verticalSpace,
+
+                    _button(
+                        title: 'Expandable nav bar',
+                        onTap: ctrl.onTapExpandableNavBar
+                    ),
                   ],
                 ),
               ),

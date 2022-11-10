@@ -33,4 +33,8 @@ class MainController extends GetxController {
   onTapCubicPageView() {
     Get.toNamed(AppRoutes.cubicPage);
   }
+
+  onTapExpandableNavBar() {
+    Get.toNamed(AppRoutes.expandableNavBar);
+  }
 }

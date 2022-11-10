@@ -6,6 +6,8 @@ import 'package:animations/pages/cubic_page_view_animation/cubic_binding.dart';
 import 'package:animations/pages/cubic_page_view_animation/cubic_page.dart';
 import 'package:animations/pages/detail_page/detail_binding.dart';
 import 'package:animations/pages/detail_page/detail_page.dart';
+import 'package:animations/pages/expandable_nav_bar/expandable_nav_bar_binding.dart';
+import 'package:animations/pages/expandable_nav_bar/expandable_nav_bar_page.dart';
 import 'package:animations/pages/list_animation/list_animation_binding.dart';
 import 'package:animations/pages/list_animation/list_animation_page.dart';
 import 'package:animations/pages/main_page/main_binding.dart';
@@ -52,6 +54,11 @@ class AppPages {
         name: AppRoutes.cubicPage,
         page: () => const CubicPage(),
         binding: CubicBinding()
+    ),
+    GetPage(
+        name: AppRoutes.expandableNavBar,
+        page: () => const ExpandableNavBarPage(),
+        binding: ExpandableNavBarBinding()
     ),
   ];
 }

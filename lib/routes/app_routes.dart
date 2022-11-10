@@ -6,4 +6,5 @@ class AppRoutes {
   static const card3DPage = '/card3DPage';
   static const detailCardPage = '/detailCardPage';
   static const cubicPage = '/cubicPage';
+  static const expandableNavBar = '/expandableNavBar';
 }
