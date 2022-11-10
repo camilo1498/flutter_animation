@@ -21,6 +21,7 @@ class CubicPage extends StatelessWidget {
           itemBuilder: (context, index) {
             List<Widget> items = ctrl.photoList.map((item) {
               final int index = ctrl.photoList.indexOf(item);
+              print(index);
               return Transform(
                 transform:  Matrix4.identity()
                   ..setEntry(3, 2, 0.003)
