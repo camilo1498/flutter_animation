@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class ExpandableNavBarController extends GetxController with GetSingleTickerProviderStateMixin{
+class ExpandableNavBarController extends GetxController with GetTickerProviderStateMixin{
 
   /// variables
   final double maxHeight = 350.0;

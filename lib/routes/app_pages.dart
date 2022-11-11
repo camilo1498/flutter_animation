@@ -12,11 +12,12 @@ import 'package:animations/pages/list_animation/list_animation_binding.dart';
 import 'package:animations/pages/list_animation/list_animation_page.dart';
 import 'package:animations/pages/main_page/main_binding.dart';
 import 'package:animations/pages/main_page/main_page.dart';
-import 'package:animations/pages/scroll_tab_bar/perspective_page_binding.dart';
-import 'package:animations/pages/scroll_tab_bar/perspective_page.dart';
 import 'package:animations/routes/app_routes.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+
+import '../pages/perspective_page_view/perspective_page.dart';
+import '../pages/perspective_page_view/perspective_page_binding.dart';
 
 class AppPages {
   static List<GetPage> get appPages => [

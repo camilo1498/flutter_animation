@@ -38,7 +38,7 @@ class CubicPage extends StatelessWidget {
               );
             }).toList();
 
-            return items[index % items.length];
+            return items[index];
 
           },
         ),

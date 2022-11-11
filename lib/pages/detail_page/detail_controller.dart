@@ -15,4 +15,8 @@ class DetailController extends GetxController {
     super.onInit();
   }
 
+  onTapBackButton() {
+    Get.back();
+  }
+
 }

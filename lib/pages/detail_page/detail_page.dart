@@ -25,36 +25,53 @@ class DetailPage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     /// image
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          boxShadow: [
-                            BoxShadow(
-                                offset: const Offset(0, 1),
-                                color: Colors.black.withOpacity(0.4),
-                                spreadRadius: 0.8,
-                                blurRadius: 5
-                            )
-                          ],
-                          borderRadius: const BorderRadius.only(
-                              bottomLeft: Radius.circular(20),
-                              bottomRight: Radius.circular(20)
-                          )
-                      ),
-                      child: SizedBox(
-                        height: 600.h,
-                        width: screenUtil.screenWidth,
-                        child: ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                                bottomLeft: Radius.circular(20),
-                                bottomRight: Radius.circular(20)
+                    Stack(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              boxShadow: [
+                                BoxShadow(
+                                    offset: const Offset(0, 1),
+                                    color: Colors.black.withOpacity(0.4),
+                                    spreadRadius: 0.8,
+                                    blurRadius: 5
+                                )
+                              ],
+                              borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(20),
+                                  bottomRight: Radius.circular(20)
+                              )
+                          ),
+                          child: SizedBox(
+                            height: 600.h,
+                            width: screenUtil.screenWidth,
+                            child: ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                    bottomLeft: Radius.circular(20),
+                                    bottomRight: Radius.circular(20)
+                                ),
+                                child: Image(
+                                  image: NetworkImage(ctrl.photoDetail.src!.medium!),
+                                  fit: BoxFit.cover,
+                                )
                             ),
-                            child: Image(
-                              image: NetworkImage(ctrl.photoDetail.src!.medium!),
-                              fit: BoxFit.cover,
-                            )
+                          ),
                         ),
-                      ),
+                        SafeArea(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 80.w, vertical: 10.h),
+                            child: GestureDetector(
+                              onTap: ctrl.onTapBackButton,
+                              child: Container(
+                                height: 80.w,
+                                width: 80.w,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     50.verticalSpace,
 

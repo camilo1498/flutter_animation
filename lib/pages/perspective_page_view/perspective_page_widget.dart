@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class AnimatedPerspectivePage extends StatefulWidget {
@@ -5,9 +7,11 @@ class AnimatedPerspectivePage extends StatefulWidget {
   final double childAspectRatio;
   final double pageAspectRatio;
   final double viewPortFraction;
+  final Function(ValueNotifier<double>) currentPageIndex;
   const AnimatedPerspectivePage({
     Key? key,
     required this.child,
+    required this.currentPageIndex,
     this.childAspectRatio = 0.7,
     this.pageAspectRatio = 1.0,
     this.viewPortFraction = 0.4
@@ -21,6 +25,7 @@ class _AnimatedPerspectivePageState extends State<AnimatedPerspectivePage> {
 
   /// controller
   late PageController _pageController;
+  Timer? _timer;
 
   /// save page offset
   ValueNotifier<double> pageOffset = ValueNotifier<double>(2.0);
@@ -35,6 +40,12 @@ class _AnimatedPerspectivePageState extends State<AnimatedPerspectivePage> {
     /// listen page offset
     _pageController.addListener(() {
       pageOffset.value = _pageController.page!;
+      if(_timer != null) {
+        _timer!.cancel();
+      }
+      _timer = Timer(const Duration(milliseconds: 100), () {
+        widget.currentPageIndex(ValueNotifier<double>(pageOffset.value));
+      });
     });
     super.initState();
   }
@@ -45,6 +56,7 @@ class _AnimatedPerspectivePageState extends State<AnimatedPerspectivePage> {
     if(mounted) {
       _pageController.dispose();
       pageOffset.dispose();
+      _timer!.cancel();
     }
     super.dispose();
   }

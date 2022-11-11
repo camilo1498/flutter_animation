@@ -1,3 +1,4 @@
+import 'package:animations/pages/mini_player/mini_player_page.dart';
 import 'package:animations/routes/app_pages.dart';
 import 'package:animations/routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
           ),
           getPages: AppPages.appPages,
           initialRoute: AppRoutes.mainPage,
+          //home: const MiniPlayerPage(),
           supportedLocales: const [Locale('en', 'US')],
           defaultTransition: Transition.fade,
           transitionDuration: 300.milliseconds,

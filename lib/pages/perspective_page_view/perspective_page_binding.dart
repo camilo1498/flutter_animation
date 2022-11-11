@@ -1,4 +1,4 @@
-import 'package:animations/pages/scroll_tab_bar/perpective_page_controller.dart';
+import 'package:animations/pages/perspective_page_view/perpective_page_controller.dart';
 import 'package:get/get.dart';
 
 class PerspectiveBinding implements Bindings {
