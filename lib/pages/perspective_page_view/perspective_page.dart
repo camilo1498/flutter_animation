@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:animations/pages/perspective_page_view/perpective_page_controller.dart';
 import 'package:animations/pages/perspective_page_view/perspective_page_widget.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +28,7 @@ class PerspectivePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       AnimatedPerspectivePage(
-                        currentPageIndex: ctrl.listenPageOffset,
+                        pageController: ctrl.pageController,
                         child: [
                           ...ctrl.photoList.map((item) => Hero(
                             tag: ctrl.photoList.indexOf(item).toString(),
@@ -57,23 +59,10 @@ class PerspectivePage extends StatelessWidget {
                         ],
                       ),
                       0.verticalSpace,
-                      SingleChildScrollView(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: List.generate(ctrl.photoList.length, (index) => Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 5.w),
-                            child: Container(
-                              width: 30.w,
-                              height: 30.w,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: ctrl.pageOffset.toInt() == index ? Colors.red : Colors.black.withOpacity(0.4)
-                              ),
-                            ),
-                          )).toList(),
-                        ),
+                      SimplePageIndicator(
+                          controller: ctrl.pageController,
+                          itemCount: ctrl.photoList.length,
+                        indicatorColor: Colors.red,
                       )
                     ],
                   ),
@@ -81,11 +70,7 @@ class PerspectivePage extends StatelessWidget {
                 SizedBox(
                   height: 500.h,
                   width: screenUtil.screenWidth,
-                  child: Center(
-                    child: Text(
-                      ctrl.pageOffset.toString()
-                    ),
-                  ),
+
                 ),
               ],
             ),
@@ -172,5 +157,161 @@ class Controller extends ChangeNotifier {
   set holder(double value) {
     _holder = value;
     notifyListeners();
+  }
+}
+
+
+class SimplePageIndicator extends StatelessWidget {
+  final PageController controller;
+  final int itemCount;
+  final Color indicatorColor;
+  final double maxSize;
+  final double minSize;
+  final double space;
+
+  const SimplePageIndicator(
+      {Key? key,
+        required this.controller,
+        required this.itemCount,
+        this.indicatorColor = Colors.grey,
+        this.maxSize = 6,
+        this.space = 14.0,
+        this.minSize = 3})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(animation: controller, builder: _buildAnimatedItem);
+  }
+
+  Widget _buildAnimatedItem(BuildContext context, Widget? child) {
+
+    int index;
+
+    double? offset;
+
+
+    if (!controller.hasClients || controller.page == null) {
+      index = controller.initialPage;
+      offset = controller.initialPage.toDouble();
+    } else {
+      index = controller.page! ~/ 1;
+      offset = controller.page;
+    }
+    return CustomPaint(
+      size: Size(
+          maxSize * _kMaxCircleCount + space * (_kMaxCircleCount - 1), maxSize),
+      painter: SimplePageIndicatorPainter(
+          itemCount: itemCount,
+          indicatorColor: indicatorColor,
+          maxSize: maxSize,
+          minSize: minSize,
+          pageIndex: index,
+          space: space,
+          pageOffset: offset! - index,
+          isStart:
+          (offset > index) && (index + _kMaxCircleCount - 1 < itemCount),
+          isEnd: index + _kMaxCircleCount - 2 >= itemCount),
+    );
+  }
+}
+
+const _kMaxCircleCount = 3;
+
+class SimplePageIndicatorPainter extends CustomPainter {
+  final int? itemCount;
+  final Color? indicatorColor;
+  final double? maxSize;
+  final double? minSize;
+  final int? pageIndex;
+  final double? pageOffset;
+  final double? space;
+  final bool? isStart;
+  final bool? isEnd;
+
+  const SimplePageIndicatorPainter(
+      {this.itemCount,
+        this.indicatorColor,
+        this.maxSize,
+        this.space,
+        this.minSize,
+        this.pageIndex,
+        this.pageOffset,
+        this.isStart,
+        this.isEnd});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+
+    Paint mPaint = Paint()
+      ..color = indicatorColor!
+      ..isAntiAlias = true;
+
+
+    const centerCircleIndex = _kMaxCircleCount ~/ 2;
+
+    double childWidth = size.width / _kMaxCircleCount;
+
+
+    for (int i = 0; i < _kMaxCircleCount; i++) {
+
+      if (pageIndex == 0 && i == 0) {
+        continue;
+      }
+      if (isEnd! && i == _kMaxCircleCount - 1) {
+        continue;
+      }
+
+      if (centerCircleIndex == i) {
+        canvas.drawCircle(
+            Offset(
+                (i * childWidth) + (childWidth / 2) - childWidth * pageOffset!,
+                childWidth / 2),
+            maxSize! - (maxSize! - minSize!) * pageOffset!,
+            mPaint..color = indicatorColor!);
+      }
+
+      else if (i < centerCircleIndex) {
+        canvas.drawCircle(
+            Offset(
+                (i * childWidth) + (childWidth / 2) - childWidth * pageOffset!,
+                childWidth / 2),
+            minSize! * (1 - pageOffset!),
+            mPaint..color = indicatorColor!.withOpacity(1 - pageOffset!));
+      }
+
+      else {
+        canvas.drawCircle(
+            Offset(
+                (i * childWidth) + (childWidth / 2) - childWidth * pageOffset!,
+                childWidth / 2),
+            minSize! + (maxSize! - minSize!) * pageOffset!,
+            mPaint..color = indicatorColor!);
+      }
+    }
+
+    if (isStart! && !isEnd!) {
+      canvas.drawCircle(
+          Offset(
+              (_kMaxCircleCount * childWidth) +
+                  (childWidth / 2) -
+                  childWidth * pageOffset!,
+              childWidth / 2),
+          minSize! * pageOffset!,
+          mPaint..color = indicatorColor!.withOpacity(pageOffset!));
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant SimplePageIndicatorPainter oldDelegate) {
+    return itemCount != oldDelegate.itemCount ||
+        indicatorColor != oldDelegate.indicatorColor ||
+        maxSize != oldDelegate.maxSize ||
+        minSize != oldDelegate.minSize ||
+        space != oldDelegate.space ||
+        pageIndex != oldDelegate.pageIndex ||
+        pageOffset != oldDelegate.pageOffset ||
+        isStart != oldDelegate.isStart ||
+        isEnd != oldDelegate.isEnd;
   }
 }
