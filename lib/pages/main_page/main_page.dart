@@ -77,6 +77,12 @@ class MainPage extends StatelessWidget {
                         title: 'Charts',
                         onTap: ctrl.onTapCharts
                     ),
+                    30.verticalSpace,
+
+                    _button(
+                        title: 'Expanded container',
+                        onTap: ctrl.onTapExpandedContainer
+                    ),
                   ],
                 ),
               ),

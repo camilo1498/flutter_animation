@@ -10,4 +10,5 @@ class AppRoutes {
   static const heroAnimationPage = '/heroAnimationPage';
   static const heroDetailPage = '/heroDetailPage';
   static const chartsPage = '/chartsPage';
+  static const expandedCardPage = '/expandedCardPage';
 }

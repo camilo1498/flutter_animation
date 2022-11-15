@@ -9,6 +9,8 @@ import 'package:animations/pages/detail_page/detail_binding.dart';
 import 'package:animations/pages/detail_page/detail_page.dart';
 import 'package:animations/pages/expandable_nav_bar/expandable_nav_bar_binding.dart';
 import 'package:animations/pages/expandable_nav_bar/expandable_nav_bar_page.dart';
+import 'package:animations/pages/expanded_card/ExpandedCardBinding.dart';
+import 'package:animations/pages/expanded_card/expanded_card_page.dart';
 import 'package:animations/pages/hero_animation/hero_animation_binding.dart';
 import 'package:animations/pages/hero_animation/hero_animation_page.dart';
 import 'package:animations/pages/hero_animation/subpages/hero_detail_page.dart';
@@ -79,6 +81,11 @@ class AppPages {
     GetPage(
         name: AppRoutes.chartsPage,
         page: () => const ChartsPage(),
+    ),
+    GetPage(
+        name: AppRoutes.expandedCardPage,
+        page: () => const ExpandedCardPage(),
+        binding: ExpandedCardBinding(),
     ),
   ];
 }

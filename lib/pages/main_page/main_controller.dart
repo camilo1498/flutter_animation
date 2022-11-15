@@ -45,4 +45,8 @@ class MainController extends GetxController {
   onTapCharts() {
     Get.toNamed(AppRoutes.chartsPage);
   }
+
+  onTapExpandedContainer() {
+    Get.toNamed(AppRoutes.expandedCardPage);
+  }
 }

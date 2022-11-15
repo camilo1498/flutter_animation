@@ -122,5 +122,5 @@ class BarChartPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(BarChartPainter old) => false;
+  bool shouldRepaint(BarChartPainter oldDelegate) => false;
 }

@@ -7,6 +7,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 void main() async{
+
+/*
+  ErrorWidget.builder = (FlutterErrorDetails details) {
+
+    return Container(
+      color: Colors.black.withOpacity(0.5),
+      child: Center(child: Text(details.exception.toString(), style: TextStyle(color: Colors.white),)),
+    );
+  };
+*/
+
   ///Ensure the widgets are already initialized
   WidgetsFlutterBinding.ensureInitialized();
   Paint.enableDithering = true;
@@ -24,6 +35,7 @@ void main() async{
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
   runApp(const MyApp());
 }
 
