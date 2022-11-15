@@ -2,12 +2,16 @@ import 'package:animations/pages/3d_card_animation/3d_card_binding.dart';
 import 'package:animations/pages/3d_card_animation/3d_card_page.dart';
 import 'package:animations/pages/3d_card_animation/detail/detail_card_binding.dart';
 import 'package:animations/pages/3d_card_animation/detail/detai_card_page.dart';
+import 'package:animations/pages/charts/charts_page.dart';
 import 'package:animations/pages/cubic_page_view_animation/cubic_binding.dart';
 import 'package:animations/pages/cubic_page_view_animation/cubic_page.dart';
 import 'package:animations/pages/detail_page/detail_binding.dart';
 import 'package:animations/pages/detail_page/detail_page.dart';
 import 'package:animations/pages/expandable_nav_bar/expandable_nav_bar_binding.dart';
 import 'package:animations/pages/expandable_nav_bar/expandable_nav_bar_page.dart';
+import 'package:animations/pages/hero_animation/hero_animation_binding.dart';
+import 'package:animations/pages/hero_animation/hero_animation_page.dart';
+import 'package:animations/pages/hero_animation/subpages/hero_detail_page.dart';
 import 'package:animations/pages/list_animation/list_animation_binding.dart';
 import 'package:animations/pages/list_animation/list_animation_page.dart';
 import 'package:animations/pages/main_page/main_binding.dart';
@@ -60,6 +64,21 @@ class AppPages {
         name: AppRoutes.expandableNavBar,
         page: () => const ExpandableNavBarPage(),
         binding: ExpandableNavBarBinding()
+    ),
+    GetPage(
+        name: AppRoutes.heroAnimationPage,
+        page: () => const HeroAnimationPage(),
+        binding: HeroAnimationBinding()
+    ),
+    GetPage(
+        name: AppRoutes.heroDetailPage,
+        page: () => const HeroDetailPage(),
+        binding: HeroAnimationBinding(),
+      transitionDuration: 1.seconds
+    ),
+    GetPage(
+        name: AppRoutes.chartsPage,
+        page: () => const ChartsPage(),
     ),
   ];
 }

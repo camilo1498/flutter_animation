@@ -37,4 +37,12 @@ class MainController extends GetxController {
   onTapExpandableNavBar() {
     Get.toNamed(AppRoutes.expandableNavBar);
   }
+
+  onTapHeroAnimation() {
+    Get.toNamed(AppRoutes.heroAnimationPage);
+  }
+
+  onTapCharts() {
+    Get.toNamed(AppRoutes.chartsPage);
+  }
 }

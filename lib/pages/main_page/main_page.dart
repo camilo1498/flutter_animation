@@ -65,6 +65,18 @@ class MainPage extends StatelessWidget {
                         title: 'Expandable nav bar',
                         onTap: ctrl.onTapExpandableNavBar
                     ),
+                    30.verticalSpace,
+
+                    _button(
+                        title: 'Hero animations',
+                        onTap: ctrl.onTapHeroAnimation
+                    ),
+                    30.verticalSpace,
+
+                    _button(
+                        title: 'Charts',
+                        onTap: ctrl.onTapCharts
+                    ),
                   ],
                 ),
               ),

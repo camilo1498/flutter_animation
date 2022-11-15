@@ -7,4 +7,7 @@ class AppRoutes {
   static const detailCardPage = '/detailCardPage';
   static const cubicPage = '/cubicPage';
   static const expandableNavBar = '/expandableNavBar';
+  static const heroAnimationPage = '/heroAnimationPage';
+  static const heroDetailPage = '/heroDetailPage';
+  static const chartsPage = '/chartsPage';
 }
