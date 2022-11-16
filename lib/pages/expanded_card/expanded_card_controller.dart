@@ -8,6 +8,7 @@ class ExpandedCardController extends GetxController with GetTickerProviderStateM
   late final AnimationController animController;
   bool expanded = false;
   double currentHeight = 0.0;
+  double currentVal = 0.0;
 
   @override
   void onInit() {
@@ -38,5 +39,7 @@ class ExpandedCardController extends GetxController with GetTickerProviderStateM
 
     }
   }
+
+
 
 }

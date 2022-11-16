@@ -71,4 +71,5 @@ class ExpandableNavBarController extends GetxController with GetTickerProviderSt
     return lerpDouble(20, 0, value)?? 0.0;
   }
 
+
 }
