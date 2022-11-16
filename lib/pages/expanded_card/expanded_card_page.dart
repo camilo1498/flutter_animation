@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:animations/pages/expanded_card/expanded_animated_container.dart';
 import 'package:animations/pages/expanded_card/expanded_card_controller.dart';
 import 'package:flutter/material.dart';
@@ -26,13 +24,14 @@ class _ExpandedCardPageState extends State<ExpandedCardPage> {
           padding: EdgeInsets.symmetric(horizontal: 60.w),
           child: SafeArea(
             child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
               child: Column(
                 children: List.generate(4, (index) => Padding(
                   padding: EdgeInsets.symmetric(vertical: 10.h),
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
                     child: ExpandableAnimatedContainer(
-                      curve: Curves.easeInOut,
+                      //curve: Curves.easeInOut,
                       firstChild: Container(
                         color: Colors.grey,
                         width: screenUtil.screenWidth,
@@ -40,12 +39,11 @@ class _ExpandedCardPageState extends State<ExpandedCardPage> {
                         child: Row(
                           children: [
                             Expanded(child: Container()),
-                            Expanded(child: Text(ctrl.currentVal.toString()))
                           ],
                         ),
                       ),
                       secondChild: Container(
-                      height: screenUtil.screenHeight *( index * 0.5),
+                      height: screenUtil.screenHeight * ( index * 0.5),
                     width: screenUtil.screenWidth,
                     color: Colors.white,
                     ),

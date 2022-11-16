@@ -10,7 +10,7 @@ class ExpandableAnimatedContainer extends StatefulWidget {
   final Widget secondChild;
   /// parent container decoration
   final BoxDecoration? boxDecoration;
-  /// animation type, you can use Curves or [ExpandableAnimatedContainerCurves]
+  /// animation type, you can use [Curves] or [ExpandableAnimatedContainerCurves]
   final Curve? curve;
   /// container expandable animation duration
   final Duration animationDuration;
@@ -80,7 +80,6 @@ class _ExpandableAnimatedContainerState extends State<ExpandableAnimatedContaine
 
   /// set container height by curve animation
   double _expandableContainerHeight(double value, double minHeight, double maxHeight) {
-    currentFirstHeight = maxHeight;
     if(lerpDouble(maxHeight, minHeight, value)! > 0.0) {
       return lerpDouble(maxHeight, minHeight, value) ?? 0.0;
     } else {
@@ -103,9 +102,9 @@ class _ExpandableAnimatedContainerState extends State<ExpandableAnimatedContaine
                 expanded.value = !expandedVal;
               });
               if(expandedVal) {
-                animationController.reverse(from: 1.0);
+                animationController.reverse();
               } else {
-                animationController.forward(from: 0.0);
+                animationController.forward();
               }
             },
             child: Container(
